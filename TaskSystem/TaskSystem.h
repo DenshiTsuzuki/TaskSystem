@@ -81,21 +81,22 @@ public:
 	template<class T>
 	shared_ptr<vector<shared_ptr<const T>>> GetTasks(const string& gname_, const string& tname_)
 	{
-		vector<shared_ptr<const T>> tasks;
+		shared_ptr<vector<shared_ptr<const T>>> tasks;
+		//vector<shared_ptr<const T>> tasks;
 		//ポインタ型
-		size_t i = 4;
+		//size_t i = 4;
 		//存在確認
 		if (this->isTask(gname_, tname_)) {
+			tasks = make_shared<vector<shared_ptr<const T>>>();
 
-			tasks.reserve(_taskdata[gname_][tname_].size() * i);
+			tasks->reserve(_taskdata[gname_][tname_].size() * sizeof(tasks));
 
 			for (auto& it : _taskdata[gname_][tname_]) {
-				tasks.emplace_back(static_pointer_cast<const T>(it));
+				tasks->emplace_back(static_pointer_cast<const T>(it));
 			}
 		}
 
-		shared_ptr<vector<shared_ptr<const T>>> def(tasks);
-		return def;
+		return tasks;
 	}
 
 	//タスクシステムシングルトン

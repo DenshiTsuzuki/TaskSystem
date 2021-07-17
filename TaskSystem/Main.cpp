@@ -13,7 +13,9 @@ void Main()
 		}
 
 		if (MouseR.down()) {
-			ML::Task_System.Kill_All_G("グループネーム");
+			auto ts =  ML::Task_System.GetTasks<Task_One::Object>("グループネーム","固有名");
+			Print << ts->size();
+
 		}
 		ML::Task_System.Update();
 		ML::Task_System.Draw();
