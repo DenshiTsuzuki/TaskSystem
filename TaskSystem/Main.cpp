@@ -4,6 +4,7 @@
 #include"Task_One.h"
 void Main()
 {
+	//起動時生成するタスクをここに書く
 
 	while (System::Update())
 	{
